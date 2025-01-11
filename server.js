@@ -9,7 +9,6 @@ import cloudinary from "cloudinary";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 
-
 // public
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -19,7 +18,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 //local import
 
-
 //  routers
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
@@ -27,18 +25,13 @@ import packageRouter from "./routes/packageRoutes.js";
 import bookingRouter from "./routes/bookingRoutes.js";
 import dashboardRouter from "./routes/dashboardRoutes.js";
 
-
 //connect db
 import connectDB from "./db/connect.js";
-
-
-
 
 //error handlers
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 import { StatusCodes } from "http-status-codes";
-
 
 //applying thirdparty middlewares
 const app = express();
@@ -86,33 +79,28 @@ app.use("/api/v1/packages", packageRouter);
 app.use("/api/v1/booking", bookingRouter);
 app.use("/api/v1/dashboard", dashboardRouter);
 
- 
-
-
-
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 
-  
-  //handling errors
-  app.use(notFoundMiddleware);
-  app.use(errorHandlerMiddleware);
-  
-  const port = process.env.PORT || 5000;
-  
-  const start = async () => {
-    try {
-      await connectDB(process.env.MONGO_URL);
-      app.listen(port, () =>
-        console.log(`Server is listening on port ${port}...`)
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
-  start();
+//handling errors
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT || 5000;
+
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URL);
+    app.listen(port, () =>
+      console.log(`Server is listening on port ${port}...`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
 
 // // Schedule health check
 // cron.schedule("*/14 * * * *", async () => {
