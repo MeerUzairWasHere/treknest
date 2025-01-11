@@ -9,7 +9,7 @@
     "server": "node server",
     "client": "cd client && npm run dev",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
-    "setup-production-app": "npm install && cd client && npm install && npm run build"
+    "setup-production-app": "npm install && cd client && npm install --production=false && npm run build"
   },
   "keywords": [],
   "author": "",
