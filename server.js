@@ -88,10 +88,11 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3001;
+const uri = process.env.MONGO_URL;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URL);
+    await connectDB(uri);
     console.log(`Mongo database is connected!!!`);
 
     app.listen(port, () =>
