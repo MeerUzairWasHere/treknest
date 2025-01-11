@@ -5,13 +5,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
   email: String,
-  phoneNumber:String,
+  phoneNumber: String,
   street: String,
   postalCode: String,
   city: String,
   state: String,
-  country: String
-,
+  country: String,
   password: String,
   role: {
     type: String,
@@ -23,7 +22,7 @@ const UserSchema = new mongoose.Schema({
   verificationToken: String,
   isVerified: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   verified: Date,
   passwordToken: {
@@ -32,15 +31,12 @@ const UserSchema = new mongoose.Schema({
   passwordTokenExpirationDate: {
     type: Date,
   },
-
-} );
-
- 
+});
 
 UserSchema.methods.toJSON = function () {
   let obj = this.toObject();
   delete obj.password;
   return obj;
 };
- 
+
 export default mongoose.model("User", UserSchema);
