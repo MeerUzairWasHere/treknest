@@ -1,9 +1,13 @@
+//third party import
+import * as dotenv from "dotenv";
+dotenv.config();
+
 const config = {
-  host: "smtp-relay.brevo.com",
-  port: 587,
+  host: "smtp.gmail.com",
+  port: process.env.EMAIL_PORT,
   auth: {
-    user: "meer.uxair007@gmail.com",
-    pass: "BgWHsOSMf1pJN8C4",
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASS,
   },
 };
 
