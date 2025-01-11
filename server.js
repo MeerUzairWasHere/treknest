@@ -1,4 +1,3 @@
-//third party import
 import * as dotenv from "dotenv";
 dotenv.config();
 import "express-async-errors";
@@ -94,7 +93,6 @@ const start = async () => {
   try {
     await connectDB(uri);
     console.log(`Mongo database is connected!!!`);
-
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
@@ -104,15 +102,3 @@ const start = async () => {
 };
 
 start();
-
-// // Schedule health check
-// cron.schedule("*/14 * * * *", async () => {
-//   try {
-//     const response = await axios.get(
-//       `https://trek-nest-travels.onrender.com/api/v1/health`
-//     );
-//     console.log(`Health check successful: ${response.data.msg}`);
-//   } catch (error) {
-//     console.error(`Health check failed: ${error.message}`);
-//   }
-// });
