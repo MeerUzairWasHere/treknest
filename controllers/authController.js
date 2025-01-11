@@ -44,20 +44,19 @@ export const register = async (req, res) => {
 
   const origin = "https://trek-nest-travels.onrender.com";
 
-  // const newOrigin = 'https://react-node-user-workflow-front-end.netlify.app';
 
-  // const tempOrigin = req.get('origin');
-  // const protocol = req.protocol;
-  // const host = req.get('host');
-  // const forwardedHost = req.get('x-forwarded-host');
-  // const forwardedProtocol = req.get('x-forwarded-proto');
+  const tempOrigin = req.get('origin');
+  const protocol = req.protocol;
+  const host = req.get('host');
+  const forwardedHost = req.get('x-forwarded-host');
+  const forwardedProtocol = req.get('x-forwarded-proto');
 
-  // await sendVerificationEmail({
-  //   name: user.name,
-  //   email: user.email,
-  //   verificationToken: user.verificationToken,
-  //   origin,
-  // });
+  await sendVerificationEmail({
+    name: user.name,
+    email: user.email,
+    verificationToken: user.verificationToken,
+    origin,
+  });
   // send verification token back only while testing in postman!!!
   res.status(StatusCodes.CREATED).json({
     msg: "Registration successful!",

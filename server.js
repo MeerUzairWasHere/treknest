@@ -8,8 +8,7 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-import axios from 'axios'
-import cron from 'node-cron'
+
 
 // public
 import { dirname } from "path";
