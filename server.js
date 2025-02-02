@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-
+import rateLimiter from "express-rate-limit";
 // public
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -61,7 +61,13 @@ app.use(
   })
 );
 app.use(mongoSanitize());
-
+app.set("trust proxy", 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 60,
+  })
+);
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
