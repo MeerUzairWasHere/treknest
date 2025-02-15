@@ -42,7 +42,7 @@ export const register = async (req, res) => {
     
   });
 
-  const origin = "https://trek-nest-travels.onrender.com";
+  const origin = "https://treknest.onrender.com";
 
 
   const tempOrigin = req.get('origin');
